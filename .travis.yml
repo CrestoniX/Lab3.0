@@ -21,3 +21,4 @@ jobs:
 
 notifications:
   email: false
+
