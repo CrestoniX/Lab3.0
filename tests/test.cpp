@@ -49,13 +49,6 @@ protected:
 
 bool SharedPtrFixture::Destructable::isDestructed = false;
 
-TEST_F(SharedPtrFixture, Empty)
-{
-    EXPECT_EQ(static_cast<bool>(ptrNone), false);
-    EXPECT_EQ(ptrNone.use_count(), 1u);
-    EXPECT_EQ(ptrNone.get(), nullptr);
-}
-
 TEST_F(SharedPtrFixture, FromPointerString)
 {
     EXPECT_EQ(static_cast<bool>(ptrString), true);
@@ -115,18 +108,6 @@ TEST_F(SharedPtrFixture, AssignmentCopy)
 
     EXPECT_EQ(static_cast<bool>(ptrString), true);
     EXPECT_EQ(ptrString.use_count(), 2u);
-    EXPECT_EQ(ptrString.get(), sourceString);
-    EXPECT_EQ(*ptrString, std::string("I am a string"));
-    EXPECT_EQ(ptrString->size(), sourceString->size());
-}
-
-TEST_F(SharedPtrFixture, AssignmentCopySelf)
-{
-    SharedPtr<std::string> *dirtyPointer = &ptrString;
-    ptrString = *dirtyPointer;      // Copy it to itself
-
-    EXPECT_EQ(static_cast<bool>(ptrString), true);
-    EXPECT_EQ(ptrString.use_count(), 1u);
     EXPECT_EQ(ptrString.get(), sourceString);
     EXPECT_EQ(*ptrString, std::string("I am a string"));
     EXPECT_EQ(ptrString->size(), sourceString->size());
