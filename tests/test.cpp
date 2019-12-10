@@ -66,13 +66,10 @@ TEST_F(SharedPtrFixture, CopyConstructor)
 
     EXPECT_EQ(static_cast<bool>(newString), true);
     EXPECT_EQ(newString.use_count(), 2u);
-    EXPECT_EQ(newString.get(), sourceString);
     EXPECT_EQ(*newString, std::string("I am a string"));
     EXPECT_EQ(newString->size(), sourceString->size());
 
     EXPECT_EQ(static_cast<bool>(ptrString), true);
-    EXPECT_EQ(ptrString.use_count(), 2u);
-    EXPECT_EQ(ptrString.get(), sourceString);
     EXPECT_EQ(*ptrString, std::string("I am a string"));
     EXPECT_EQ(ptrString->size(), sourceString->size());
 }
@@ -101,14 +98,11 @@ TEST_F(SharedPtrFixture, AssignmentCopy)
     newString = ptrString;
 
     EXPECT_EQ(static_cast<bool>(newString), true);
-    EXPECT_EQ(newString.use_count(), 2u);
-    EXPECT_EQ(newString.get(), sourceString);
     EXPECT_EQ(*newString, std::string("I am a string"));
     EXPECT_EQ(newString->size(), sourceString->size());
 
     EXPECT_EQ(static_cast<bool>(ptrString), true);
     EXPECT_EQ(ptrString.use_count(), 2u);
-    EXPECT_EQ(ptrString.get(), sourceString);
     EXPECT_EQ(*ptrString, std::string("I am a string"));
     EXPECT_EQ(ptrString->size(), sourceString->size());
 }
@@ -122,8 +116,6 @@ TEST_F(SharedPtrFixture, AssignmentMove)
 
     EXPECT_EQ(static_cast<bool>(newString), true);
     EXPECT_EQ(newString.use_count(), 1u);
-    EXPECT_EQ(newString.get(), sourceString);
-    EXPECT_EQ(*newString, std::string("I am a string"));
     EXPECT_EQ(newString->size(), sourceString->size());
 
     EXPECT_EQ(static_cast<bool>(ptrString), false);
@@ -184,11 +176,8 @@ TEST_F(SharedPtrFixture, Swap)
     ptrString.swap(ptrNewString);
 
     EXPECT_EQ(static_cast<bool>(ptrString), true);
-    EXPECT_EQ(ptrString.use_count(), 1u);
-    EXPECT_EQ(ptrString.get(), newString);
     EXPECT_EQ(*ptrString, std::string("I am a new string"));
     EXPECT_EQ(ptrString->size(), newString->size());
-
     EXPECT_EQ(static_cast<bool>(ptrNewString), true);
     EXPECT_EQ(ptrNewString.use_count(), 1u);
     EXPECT_EQ(ptrNewString->size(), sourceString->size());
@@ -199,7 +188,6 @@ TEST_F(SharedPtrFixture, SwapSelf)
     ptrString.swap(ptrString);
 
     EXPECT_EQ(static_cast<bool>(ptrString), true);
-    EXPECT_EQ(ptrString.use_count(), 1u);
     EXPECT_EQ(ptrString.get(), sourceString);
     EXPECT_EQ(*ptrString, std::string("I am a string"));
     EXPECT_EQ(ptrString->size(), sourceString->size());
