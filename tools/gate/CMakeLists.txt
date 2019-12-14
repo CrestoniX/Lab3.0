@@ -21,7 +21,7 @@ HunterGate(
 
 project(gate-usage-example)
 
-# now hunter can be used, like
+# now hunter can be used, lik
 hunter_add_package(Sugar)
 
 # add downloaded package to project

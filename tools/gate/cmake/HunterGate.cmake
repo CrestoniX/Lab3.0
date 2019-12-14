@@ -22,7 +22,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# This is a gate file to Hunter package manager.
+# This is a gate file to Hunter package manager.00
 # Include this file using `include` command and add package you need, example:
 #
 #     cmake_minimum_required(VERSION 3.2)
