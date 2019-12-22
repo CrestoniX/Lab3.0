@@ -1,5 +1,6 @@
 "Copyright [2019] <Copyright owner>"
 #ifndef INCLUDE_SHAREDPTR_HPP_
+#define INCLUDE_SHAREDPTR_HPP_
 #include <atomic>
 #include <iostream>
 #include <utility>
@@ -152,13 +153,11 @@ SharedPtr<T>::~SharedPtr() {
     if (control_block != nullptr) {
         if (!control_block->empty()) {
             control_block->del();
-        }
-        else {
+        } else {
             delete ptr;
             delete control_block;
             ptr = nullptr;
-            control_block = nullptr;
-        }
+            control_block = nullptr; }
     }
 }
 #endif
