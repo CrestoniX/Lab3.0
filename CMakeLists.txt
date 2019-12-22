@@ -27,12 +27,6 @@ hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 find_package(Threads)
 
-add_library(
-  ${PROJECT_NAME}
-  STATIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/SharedPtr.cpp
-)
-
 add_executable(
   tests
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
