@@ -1,7 +1,8 @@
 "Copyright [2019] <Copyright owner>"
-INCLUDE_SHAREDPTR_HPP_
+#ifndef INCLUDE_SHAREDPTR_HPP_
 #include <atomic>
 #include <iostream>
+#include <utility>
 
 class Control_Block {          //класс, содержащий методы для подсчета ссылок
     std::atomic_uint counter;  //объявление самого счетчика
@@ -32,11 +33,14 @@ public:
     T* ptr;
     Control_Block* control_block; //указатель на объект класса Control_Block
     SharedPtr() :ptr(nullptr), control_block(nullptr) {}
-    //если конструктор подается без данных, то ptr и control_block - пустые указатели
+    //если конструктор подается без данных,
+    // то ptr и control_block - пустые указатели
     SharedPtr(const SharedPtr&);
-    //конструктор принимающий на вход ссылку на константный объект класса SharedPtr
+    //конструктор принимающий на вход ссылку на константный
+    // объект класса SharedPtr
     SharedPtr<T>& operator = (const SharedPtr<T>&); //перегрузка оператора =
-    explicit SharedPtr(const T); // консткуктор, принимающий на вход параметр шаблона
+    explicit SharedPtr(const T);
+    // консткуктор, принимающий на вход параметр шаблона
 
     void reset();
     void reset(T*);
@@ -114,7 +118,9 @@ void SharedPtr<T>::swap(SharedPtr& shared_ptr) {
     std::swap(control_block, shared_ptr.control_block);
 }
 
-template <typename T> // описание константной функции get(), которая возвращает значение указателя ptr, если он не равен 0
+template <typename T>
+// описание константной функции get(), которая возвращает
+// значение указателя ptr, если он не равен 0
 T* SharedPtr<T>::get() const {
     if (ptr == nullptr) return 0;
     return ptr;
@@ -155,3 +161,4 @@ SharedPtr<T>::~SharedPtr() {
         }
     }
 }
+#endif
