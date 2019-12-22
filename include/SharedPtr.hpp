@@ -15,14 +15,15 @@ public:
     void del() { // метод декриментирования счетчика
         counter--;
     }
-    bool empty() { // метод проверки того факта, что в счетчике хранится 1 ссылка
+    bool empty() {
+        // метод проверки того факта, что в счетчике хранится 1 ссылка
         if (counter == 1) return true;
         return false;
     }
     int value_counter() { // метод отображения значения счетчика(кол-во ссылок)
         return counter;
     }
-    ~Control_Block() {}; // деструктор, ничего не несет в себе
+    ~Control_Block() {} // деструктор, ничего не несет в себе
 };
 
 template <typename T>
@@ -30,10 +31,12 @@ class SharedPtr {
 public:
     T* ptr;
     Control_Block* control_block; //указатель на объект класса Control_Block
-    SharedPtr() :ptr(nullptr), control_block(nullptr) {}; //если конструктор подается без данных, то ptr и control_block - пустые указатели
-    SharedPtr(const SharedPtr&); //указатель принимающий на вход ссылку на константный объект класса SharedPtr
+    SharedPtr() :ptr(nullptr), control_block(nullptr) {}
+    //если конструктор подается без данных, то ptr и control_block - пустые указатели
+    SharedPtr(const SharedPtr&);
+    //конструктор принимающий на вход ссылку на константный объект класса SharedPtr
     SharedPtr<T>& operator = (const SharedPtr<T>&); //перегрузка оператора =
-    SharedPtr(const T); // консткуктор, принимающий на вход параметр шаблона
+    explicit SharedPtr(const T); // консткуктор, принимающий на вход параметр шаблона
 
     void reset();
     void reset(T*);
@@ -68,7 +71,6 @@ SharedPtr<T>& SharedPtr<T>::operator = (const SharedPtr<T>& shared_ptr) {
     control_block = shared_ptr.control_block;
     control_block->add();
     return *this;
-
 }
 
 template <typename T>
@@ -85,8 +87,7 @@ void SharedPtr<T>::reset() {
         delete control_block;
         ptr = nullptr;
         control_block = nullptr;
-    }
-    else {
+    } else {
         ptr = nullptr;
         control_block = nullptr;
     }
@@ -100,8 +101,7 @@ void SharedPtr<T>::reset(T* curr_ptr) {
         ptr = curr_ptr;
         control_block = new Control_Block();
         control_block->add();
-    }
-    else {
+    } else {
         ptr = curr_ptr;
         control_block = new Control_Block();
         control_block->add();
