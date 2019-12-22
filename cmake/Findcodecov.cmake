@@ -187,7 +187,6 @@ function(add_coverage_target TNAME)
 	# e.g. C and Fortran mixed and uses different compilers (e.g. clang and
 	# gfortran) this can trigger huge problems, because different compilers may
 	# use different implementations for code coverage.
-	get_target_property(TSOURCES ${TNAME} SOURCES)
 	set(TARGET_COMPILER "")
 	set(ADDITIONAL_FILES "")
 	foreach (FILE ${TSOURCES})
