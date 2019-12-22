@@ -1,3 +1,4 @@
+"Copyright [2019] <Copyright owner>"
 #include <gtest/gtest.h>
 
 #include "SharedPtr.hpp"

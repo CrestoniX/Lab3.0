@@ -1,3 +1,5 @@
+"Copyright [2019] <Copyright owner>"
+#ifndef
 #include <atomic>
 #include <iostream>
 
