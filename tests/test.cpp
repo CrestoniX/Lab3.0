@@ -1,3 +1,4 @@
+// Copyright 2019 CrestoniX <loltm.crav4enko@gmail.com>
 #include <gtest/gtest.h>
 
 #include "SharedPtr.hpp"
@@ -41,10 +42,7 @@ protected:
         SharedPtrFixture::Destructable::isDestructed = false;
     }
 
-    void TearDown() override
-    {
-
-    }
+    void TearDown() override {}
 };
 
 bool SharedPtrFixture::Destructable::isDestructed = false;
