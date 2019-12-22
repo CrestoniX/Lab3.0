@@ -3,11 +3,14 @@
 #include "SharedPtr.hpp"
 #include <string>
 
-TEST_F(SharedPtr, EndOfProgramm)
+TEST(SharedPtr, End)
 {
-    EXCEPT_EQ(ptr, nullptr);
-    EXCEPT_EQ(control_block, nullptr);
-
+    auto result1 = counter--;
+    auto result2 = counter++;
+    EXPECT_EQ(ptr, nullptr);
+    EXPECT_EQ(control_block, nullptr);
+    EXPECT_EQ(control_block->del(), result1);
+    EXPECT_EQ(control_block->add(), result2);
 }
 
 
