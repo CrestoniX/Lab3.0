@@ -1,13 +1,15 @@
 "Copyright [2019] <Copyright owner>"
-#ifndef
+INCLUDE_SHAREDPTR_HPP_
 #include <atomic>
 #include <iostream>
 
 class Control_Block {          //класс, содержащий методы для подсчета ссылок
     std::atomic_uint counter;  //объявление самого счетчика
 public:
-    Control_Block() :counter(0) {} //присваивание счетчику значения 0 через конструктор
-    void add() { // метод инкрементирования счетчика
+    Control_Block() :counter(0) {}
+    //присваивание счетчику значения 0 через конструктор
+    void add() {
+        // метод инкрементирования счетчика
         counter++;
     }
     void del() { // метод декриментирования счетчика
