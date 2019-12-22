@@ -160,4 +160,4 @@ SharedPtr<T>::~SharedPtr() {
             control_block = nullptr; }
     }
 }
-#endif
+#endif // INCLUDE_SHAREDPTR_HPP_
