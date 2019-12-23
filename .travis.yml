@@ -11,13 +11,13 @@ jobs:
   include:
     - name: "checks"
       script:
-        - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/checks.sh toliak/bootstrap-cpp
+       ./scripts/checks.sh toliak/bootstrap-cpp
     - name: "tests"
       script:
-        - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/tests.sh toliak/bootstrap-cpp 
+       ./scripts/tests.sh toliak/bootstrap-cpp 
     - name: "quality"
       script:
-        - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/duplication.sh toliak/bootstrap-cpp 
+        ./scripts/duplication.sh toliak/bootstrap-cpp 
 
 notifications:
     email: false
