@@ -5,19 +5,19 @@ services:
 - docker
 
 before_script:
-  - docker pull rusdevops/bootstrap-cpp
+  - docker pull toliak/bootstrap-cpp
 
 jobs:
   include:
     - name: "checks"
       script:
-        - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/checks.sh rusdevops/bootstrap-cpp
+        - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/checks.sh toliak/bootstrap-cpp
     - name: "tests"
       script:
-        - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/tests.sh rusdevops/bootstrap-cpp 
+        - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/tests.sh toliak/bootstrap-cpp 
     - name: "quality"
       script:
-        - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/duplication.sh rusdevops/bootstrap-cpp 
+        - docker run -t -v $(pwd):/opt/builder/ --entrypoint ./scripts/duplication.sh toliak/bootstrap-cpp 
 
 notifications:
     email: false
