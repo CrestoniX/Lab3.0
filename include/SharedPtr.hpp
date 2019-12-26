@@ -42,6 +42,7 @@ public:
     SharedPtr<T>& operator = (const SharedPtr<T>&); //перегрузка оператора =
     explicit SharedPtr(const T);
     // консткуктор, принимающий на вход параметр шаблона
+    SharedPtr(SharedPtr&& r);
 
     void reset();
     void reset(T*);
@@ -54,7 +55,7 @@ public:
     ~SharedPtr();
 };
 
-template <typename T> //
+template <typename T> // Конструктор копирования
 SharedPtr<T>::SharedPtr(const SharedPtr& shared_ptr) { //
     ptr = shared_ptr.get();
     control_block = shared_ptr.control_block;
@@ -77,17 +78,17 @@ SharedPtr<T>& SharedPtr<T>::operator = (const SharedPtr<T>& shared_ptr) {
     control_block->add();
     return *this;
 }
-
-SharedPtr(SharedPtr&& r){
+template<typename T>
+SharedPtr<T>::SharedPtr(SharedPtr&& r){
     *this = std::move(r);
-} // перемещение
+} // конструктор перемещения
 
 template <typename T>
 SharedPtr<T>::SharedPtr(const T value) {
     ptr = new T(value);
     control_block = new Control_Block();
     control_block->add();
-}
+} 
 
 template <typename T>
 void SharedPtr<T>::reset() {
