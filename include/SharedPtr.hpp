@@ -78,6 +78,10 @@ SharedPtr<T>& SharedPtr<T>::operator = (const SharedPtr<T>& shared_ptr) {
     return *this;
 }
 
+SharedPtr(SharedPtr&& r){
+    *this = std::move(r);
+} // перемещение
+
 template <typename T>
 SharedPtr<T>::SharedPtr(const T value) {
     ptr = new T(value);
